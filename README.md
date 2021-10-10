@@ -1,4 +1,4 @@
-# hass-pyscript-hue_assistant
+# Hue Assistant
 Adds helpful Hue functionality to Home Assistant via Pyscript
 
 Hue Assistant adds lists for Hue Bridge-stored scenes and Hue Essentials effects/animations stored in the Bridge
