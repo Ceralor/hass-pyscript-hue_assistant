@@ -2,24 +2,24 @@
 
 ## Hue Assistant for Pyscript
 ## MIT License 2021
-## Adds lists for Hue Bridge-stored scenes and Hue Essentials effects/animations stored in the Bridge
-## This requires two Input Select helpers: Hue Animations and Hue Scenes
-## This also requires an input_text named hue_user that has a valid Hue username, preferably the one your HA app uses
-## It also needs the bridge's IP; I use a rate accelerator to pull this but you can manually plug it below.
-## You can activate the selected scene/effect by calling pyscript.activate_scene or pyscript.activate_effect
-## You can also supply room_scene or room_effect, respectively, formatted as "<Room Name> - <Scene/Effect Name>"
+
 import requests, json, re
 
-bridge_host = pyscript.app_config["bridge_ip"]
-hue_user = pyscript.app_config["hue_user"]
+bridge_host = pyscript.app_config["hostname"]
+hue_user = pyscript.app_config["username"]
 hue_api_url = f"http://{bridge_host}/api/{hue_user}"
 
 @time_trigger('startup')
 def init_pyscript_huelists():
     pyscript.hue_lists = "ATTRIB"
+    state.set("input_select.hue_scenes", new_attributes={"options":[], \
+        "friendly_name": "Hue Scenes"})
+    state.set("input_select.hue_animations", new_attributes={"options":[], \
+        "friendly_name": "Hue Animations"})
     state.set("binary_sensor.hue_sync", state=False, \
         new_attributes={"device_class":"connectivity", \
             "friendly_name":"Hue Sync Status"})
+    
 
 @time_trigger('startup','cron(0 * * * *)')
 @service
