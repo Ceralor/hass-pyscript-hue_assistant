@@ -19,3 +19,5 @@ pyscript:
 ```
 
 It's recommended to use the `secrets.yaml` file for adding the username, as shown above. Additionally a static IP for your bridge, configured as a static DHCP assignment in your router, is recommended, but you may also use the mDNS name "Philips-hue.local" if your bridge is named such for resolution.
+
+To install Hue Assistant, clone this repo into your `pyscript/apps` directory in your Home Assistant configuration, creating the `apps` subdirectory if it does not already exist. Updates can be installed by pulling the latest commit from `main`.
